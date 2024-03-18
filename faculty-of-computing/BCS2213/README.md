@@ -1,6 +1,6 @@
-## This is Formal Methods 
+## This is Formal Methods
 
-## Using Community Z Tools
+## Using [Community Z Tools](https://czt.sourceforge.net/)
 ### New Project
 - Open `CZT.exe`
 - `File>New>CZT Project`
