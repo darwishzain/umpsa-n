@@ -1,5 +1,5 @@
 ## This is Formal Methods
-
+P/S: I can't install on my device too
 ## Using [Community Z Tools](https://czt.sourceforge.net/)
 ### New Project
 - Open `CZT.exe`
