@@ -11,7 +11,7 @@ P/S: I can't install on my device too
 ### New Z Specification
 - `File>New>Z Specification`
 - Input `Name`
-- Select `Unicode (encoded as UTF-8)` (Markup)
+- Select `Unicode (encoded as UTF-8)`
 - `Finish`
 
 ### Basic 
