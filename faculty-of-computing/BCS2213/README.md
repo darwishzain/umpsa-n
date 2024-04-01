@@ -62,5 +62,8 @@ P/S: I can't install on my device too
 
 ## Reference
 - [Formal Methods in Software Engineering PDF](https://ftms.edu.my/v2/wp-content/uploads/2019/02/StudyGuideSD3049.pdf)
+- [Z Notation on Wikipedia](https://en.wikipedia.org/wiki/Z_notation)
 - [Z Notation on Fandom](https://formalmethods.fandom.com/wiki/Z_notation)
 - [Glossary of Z Notation](https://staff.washington.edu/jon/z/glossary.html)
+- [Z : A Formal Specification Notation](https://link.springer.com/chapter/10.1007/978-1-4471-0701-9_1)
+- [The Way of Z Practical Programming with Formal Methods](https://staff.washington.edu/jon/z-book/index.html)
