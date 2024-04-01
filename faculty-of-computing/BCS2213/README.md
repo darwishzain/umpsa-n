@@ -62,4 +62,5 @@ P/S: I can't install on my device too
 
 ## Reference
 - [Formal Methods in Software Engineering PDF](https://ftms.edu.my/v2/wp-content/uploads/2019/02/StudyGuideSD3049.pdf)
+- [Z Notation on Fandom](https://formalmethods.fandom.com/wiki/Z_notation)
 - [Glossary of Z Notation](https://staff.washington.edu/jon/z/glossary.html)
