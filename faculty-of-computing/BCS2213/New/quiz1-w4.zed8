@@ -1,0 +1,14 @@
+┌StateSchema
+  Fiction,Nonfiction,Reference: BOOK
+  Novel,Academic:ℙ BOOK
+|
+	Novel ⊆ {Fiction,Nonfiction}
+    Academic ⊆ {Reference}
+└
+
+┌Merge
+  ΔStateSchema
+  Merge:ℙ BOOK
+|
+	Merge = Novel ∪ Academic
+└

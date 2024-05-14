@@ -1,0 +1,71 @@
+─ section spec04 parents standard_toolkit
+└
+─ [ ID, NAME, CTCNUM, ROOMNUM, DATE ] └
+
+
+This specification describes ...
+
+╷
+  Ali, Ahmed, Siti : NAME
+  ID01, ID02, ID03 : ID
+  A001, A002, A003, A004, A005 : ROOMNUM
+└
+
+
+┌ StateCustomer
+  ic : ℙ ID
+  name : ℙ NAME
+  ctcno: ℙ CTCNUM
+  custid : ID→NAME
+  custctc : ID→CTCNUM
+  |
+  ic = dom  custid
+└
+
+┌ StateHotel
+  roomNo : ℙ ROOMNUM
+  checkIn, checkOut : ℙ DATE
+  roominfo : ROOMNUM→DATE
+└
+
+┌ InitialCust
+  StateCustomer
+|
+  ic = ∅
+  name = ∅
+  ctcno = ∅
+└
+
+┌ IntialHotel
+  StateHotel
+|
+  checkIn = ∅
+  checkOut = ∅
+└
+
+┌ InitialCust2
+   StateCustomer
+|
+  ic = { ID01, ID02, ID03}
+  name = {Ali, Ahmed, Siti}
+└
+
+┌ InitialHotel2
+  StateHotel
+|
+  roomNo = {A001, A002, A003, A004, A005}
+└
+
+┌ Registraction
+  ΔStateCustomer
+  newName? : NAME
+  newId? : ID
+|
+ newId? ∉  ic
+ custid′ = custid ∪ {newId? ↦ newName?}
+ 
+└
+
+
+
+
