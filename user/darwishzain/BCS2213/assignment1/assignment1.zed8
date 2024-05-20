@@ -1,0 +1,101 @@
+﻿─ section assignment1 parents standard_toolkit
+└
+Each student of the Computer Faculty has a curriculum structure according to their
+respective departments. In general, the purpose of the curriculum structure is to visualize the
+registration of subjects in each semester. Based on the visualization, students need to register
+their respective subjects using the Open registration system.
+
+In the curriculum structure,
+
+subject groups(specified based on codes)
+faculty core subjects
+departmental required subjects
+university required subjects 
+elective subjects 
+
+students have the right to determine the number of credits 
+what subjects are required during registration for each semester
+
+Based on the curriculum structure and open registration system, you are required to develop a
+Z specification model using the Z notation tool. The specification should support these
+requirements:
+1. The system able to login and logout by the student and academic advisor.
+2. The system allows student to register (insert) and withdraw or drop (delete) the subject.
+3. The system allows student to update their registration such as change the section or etc.
+4. The system should provide and alert notification to the academic advisor for
+approve/disapprove
+5. This system does not allow students to register for subjects exceeding 20 credits per semester.
+6. This system allows academic advising to approve or disapprove subjects registered/withdrawn
+by students.
+7. The system able to display/print all information of registered subject by student and academic
+advisor.
+## Course == Code
+─ [STUDENT,ADVISOR,COURSE,SECTION] └
+
+┌ SystemSchema
+  Student: ℙ STUDENT
+  Advisor:  ℙ ADVISOR
+  Course: ℙ COURSE
+  Section: COURSE ⇸ ℙ SECTION
+  Registered: STUDENT ⇸ (COURSE ↔ SECTION)
+  Creditcourse: COURSE ⇸ ℕ
+  Credittotal: STUDENT ⇸ ℕ
+  Maxcredit: ℕ
+  Studentlogged : ℙ STUDENT
+  Advisorlogged : ℙ ADVISOR
+|
+	Maxcredit = 20
+└
+
+┌ InitSystem
+ 	ΞSystemSchema 	
+|
+  Student = ∅
+  Advisor = ∅
+  Course = ∅
+  Section = ∅
+  Registered = ∅
+  Creditcourse = ∅
+  Credittotal = ∅  
+└
+
+┌ StudentLogin
+  ΔSystemSchema
+  student?: STUDENT
+|
+  student? ∉ Studentlogged
+  	Studentlogged′ = Studentlogged ∪ { student? }
+└
+
+┌ StudentLogout
+  ΔSystemSchema
+  student?: STUDENT
+|
+  student? ∈ Studentlogged
+  	Studentlogged′ = Studentlogged ∖ { student? }
+└
+
+┌ AdvisorLogin
+  ΔSystemSchema
+  advisor?: ADVISOR
+|
+  advisor? ∉ Advisorlogged
+  	Advisorlogged′ = Advisorlogged ∪ { advisor? }
+└
+
+┌ AdvisorLogout
+  ΔSystemSchema
+  advisor?: ADVISOR
+|
+  advisor? ∈ Advisorlogged
+  	Advisorlogged′ = Advisorlogged ∖ { advisor? }
+└
+
+┌ CourseRegister
+  ΔSystemSchema
+  
+|
+  PREDS
+└
+
+
