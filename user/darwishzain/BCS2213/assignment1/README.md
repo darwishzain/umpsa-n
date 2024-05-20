@@ -5,14 +5,17 @@ Instruction:
 4 If there are elements of plagiarism, 0 marks will be given.
 
 Questions
-1 Each student of the Computer Faculty has a curriculum structure according to their
+
+Each student of the Computer Faculty has a curriculum structure according to their
 respective departments. In general, the purpose of the curriculum structure is to visualize the
 registration of subjects in each semester. Based on the visualization, students need to register
 their respective subjects using the Open registration system.
+
 In the curriculum structure, several subject groups such as faculty core subjects,
 departmental required subjects, university required subjects and elective subjects have been
 specified based on their respective codes. However, students have the right to determine the
 number of credits and what subjects are required during registration for each semester
+
 Based on the curriculum structure and open registration system, you are required to develop a
 Z specification model using the Z notation tool. The specification should support these
 requirements:
