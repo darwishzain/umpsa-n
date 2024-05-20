@@ -1,0 +1,39 @@
+﻿─ section labw2sheet1 parents standard_toolkit
+└
+FUNCTION
+lengthr,widthr
+lengtht,widtht
+rect = lengthr*widthr
+tria = (lengthr*widthr)/2
+print(rect)
+print(tria)
+
+┌ AreaSchema
+	rect,tria:ℕ
+|
+	rect>0
+	tria>0
+└
+INITIALIZE
+┌ InitValue
+	AreaSchema
+|
+	rect = 0
+	tria = 0
+└
+AREA
+┌ AreaOp
+	ΔAreaSchema
+	length?,width?:ℕ
+|
+	rect = length?*width?
+	tria = (length?*width?) div 2
+└
+DISPLAY
+┌ Display
+  ΞAreaSchema
+  rect!,tria!:ℕ
+|
+  rect! = rect
+  tria! = tria
+└

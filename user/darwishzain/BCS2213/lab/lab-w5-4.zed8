@@ -1,0 +1,35 @@
+﻿─ section w54 parents standard_toolkit
+└
+NEED CORRECTION
+Consider a voting system 
+in which a voter 
+can only vote 
+if they are of legal voting age and are a registered voter. 
+Write a Z specification to describe this system 
+using a biconditional operator.
+
+─ [ BOOL] └
+
+╷
+  T,F : BOOL
+└
+
+┌ Voting
+  Register,Canvote : BOOL
+  Age,Legalage : ℕ
+└
+┌ Init
+  ΔVoting
+|
+  Age = 20
+  Register = T
+  Legalage = 18
+└
+
+┌ Check 
+  ΞVoting
+|
+  (Age ≥ Legalage) ⇔ (Register =T)
+└
+
+

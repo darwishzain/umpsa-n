@@ -1,0 +1,24 @@
+﻿─ section lab14w2 parents standard_toolkit
+└
+
+This specification describes ...
+─ [ CODE,CH,GRADE,SCALE] └
+code->credithour
+bcs3233->3,bcs3123->3,uhl2422->2
+grade->scale
+A->4,B->3,C->2,D->1,E->0
+╷
+  BCS3233,BCS3542 : CODE
+|
+  PREDS
+└
+
+gpa = (ch*grade)credit
+┌ SubjectSchema
+	Subject: CODE
+	CreditHour:CODE→CH
+	Grade:GRADE
+	Scale:SCALE
+|
+	Scale = {}
+└

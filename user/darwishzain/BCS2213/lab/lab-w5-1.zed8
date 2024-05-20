@@ -1,0 +1,29 @@
+﻿─ section w5 parents standard_toolkit
+└
+
+This specification describes ...
+─ [ BOOL ] └
+
+╷
+  T,F:BOOL
+└
+
+┌ Restaurant
+  Reserve, Slot : BOOL
+  Size,Capacity : ℤ
+|
+  1 ≤ Capacity ≤ 100
+└
+
+┌ Init
+	ΔRestaurant
+	size? : ℤ
+|
+  Size = size?
+└
+
+┌ Reservation
+  ΞRestaurant
+|
+  ( Slot = T ) ∧ ( Size ≤ Capacity ) ⇒	( Reserve = T ) 
+└

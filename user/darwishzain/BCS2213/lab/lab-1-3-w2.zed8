@@ -1,0 +1,31 @@
+﻿─ section labw2sheet3 parents standard_toolkit
+└
+!ask if need to input multiple
+┌ AssessmentSchema
+	average,median:ℕ
+	v1,v2,v3,v4,v5,v6:ℕ
+|
+  average>0
+  median>0
+  v1>0
+  v2>0
+  v3>0
+  v4>0
+  v5>0
+  v6>0
+└
+INITIALIZE
+┌ InitAssessment
+	AssessmentSchema
+|
+	average = 0
+	median = 0
+	v1=0
+	v2=0
+  	v3=0
+	v4=0
+	v5=0
+	v6=0
+└
+
+

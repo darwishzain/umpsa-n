@@ -1,0 +1,32 @@
+﻿─ section labw2sheet2 parents standard_toolkit
+└
+
+┌ DiscountSchema
+	discount,discounted:ℕ
+|
+  discount≥0
+└
+INITIALIZE
+┌ InitDiscount
+  DiscountSchema
+|
+  discount = 2 div 100
+  discounted = 0
+└
+OPERATION
+┌ DiscountCalc
+	ΔDiscountSchema
+	ItemPrice?:ℕ
+|
+	discounted = ItemPrice? * discount
+└
+DISPLAY
+┌ DisplayDiscounted
+	ΞDiscountSchema
+	discounted!:ℕ
+|
+	discounted! = discounted 
+└
+
+
+

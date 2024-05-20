@@ -1,0 +1,48 @@
+﻿─ section labw21 parents standard_toolkit
+└
+function==>
+counter = [0,max]
+if(counter<max)
+{
+	counter = counter+1
+}
+
+if(counter>d)
+{
+	counter = counter - d
+}
+
+print(counter)
+┌ CounterSchema
+	counter, maximum : ℤ
+|
+	0<counter<maximum
+└
+INITIALIZE
+┌ InitCounter
+	CounterSchema
+|
+	counter = 0
+└
+OPERATION
+┌ IncrementOp
+	ΔCounterSchema
+|
+	counter≤maximum
+		counter = counter +1
+└
+┌ DecrementOp
+	ΔCounterSchema
+	input1?:ℤ
+|
+	counter≥input1?
+		counter = counter − input1?
+└
+
+┌ DisplayOp
+	ΞCounterSchema
+	output1! : ℕ
+|
+	output1! = counter
+└
+

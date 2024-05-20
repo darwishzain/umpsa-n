@@ -1,0 +1,26 @@
+﻿─ section w52 parents standard_toolkit
+└
+
+Consider a weather monitoring system. 
+Write a Z specification to describe a condition where an
+outdoor event will proceed 
+if the weather forecast predicts 
+	clear skies or a mild breeze.
+
+─ [BOOL] └
+
+╷
+  T,F : BOOL
+└
+
+┌ Event
+  Event, Clearsky,Mildbreeze : BOOL
+└
+
+┌ CheckWeather
+  ΞEvent
+  weather? : BOOL
+|
+  (weather? = Clearsky) ∨ (weather? = Mildbreeze) ⇒ ( Event =T )
+  ¬( (weather? = Clearsky) ∧ (weather? = Mildbreeze) ) ⇒ ( Event =F )
+└

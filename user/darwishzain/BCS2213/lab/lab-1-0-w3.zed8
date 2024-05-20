@@ -1,0 +1,81 @@
+﻿─ section labznotation parents standard_toolkit
+└
+#register n/ cust ##Done
+#check in n check out 
+#only registered can check in n/ checkout ##done -- need study for connect btw hotel n/ cust
+#num day = check out - check in ##study relation
+#price = day * 200 ##added price need settle check in n/ checkout
+#query if check in // check out
+#output check in cust ##need study relation
+
+all customer has IDNUM
+Customer - ID,Name, PhoneNum
+Hotel - RoomNum, CheckIn, CheckOut
+
+ID-Name Total Function
+ID-PhoneNum Partial Function but Total Function for all customer
+RoomNum - CheckIn 
+─ [ID,NAME,ROOM,DATE] └
+##powerset
+nric belongs to ID thus power set
+every nric has name
+┌ PandoraCustomer
+	nric: ℙ ID
+	Name : ID → ℙ NAME
+└
+## powerset
+Room belongs to ROOM
+CheckIn n CheckOut belongs to DATE 
+every room number will have check in and check out date
+┌ PandoraHotel
+	Price : ℤ
+	Room: ℙ ROOM
+	CheckIn, CheckOut : ROOM ⇸ ℙ DATE
+└
+
+┌ InitPandora
+  PandoraCustomer
+  PandoraHotel
+|
+	nric = ∅
+	Name = ∅
+	Price = 200
+	Room = ∅
+	CheckIn = ∅
+	CheckOut = ∅
+└
+
+┌ AddCustomer
+  ΔPandoraCustomer
+  newnric?: ID
+  newname?: ℙ NAME
+|
+  newnric? ∉ nric
+  Name′ = Name ∪ { newnric? ↦ newname? }
+└
+┌ CheckInOp
+  ΞPandoraCustomer
+  ΔPandoraHotel
+  customernric?:ID
+  newcheckin?:DATE
+|
+	customernric? ∈ nric
+	
+└
+
+┌ CheckOutOp
+  ΞPandoraCustomer
+  ΔPandoraHotel
+  customernric?:ID
+  newcheckout?:DATE
+  day:ℤ
+|
+	customernric? ∈ nric
+	
+└
+
+┌ DisplayCheckIn
+  ΞPandoraHotel
+|
+	Price= Price *Price
+└

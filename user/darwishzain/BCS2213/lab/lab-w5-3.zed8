@@ -1,0 +1,34 @@
+﻿─ section w53 parents standard_toolkit
+└
+
+Consider a university registration system. 
+Write a Z specification to describe 
+a condition where 
+a student is not allowed to register for a course 
+if they have an outstanding balance on their account
+
+─ [ BOOL] └
+
+╷
+  T,F : BOOL
+└
+
+┌ Registration
+  Balance,Topay : ℕ
+  Canregister : BOOL
+└
+
+┌ Init
+  ΔRegistration
+|
+  Topay = 2000
+└
+
+┌ Check
+  ΞRegistration
+  paid?:ℕ
+|
+	Balance =Topay − paid?
+	(Balance > 0) ⇒ (Canregister = F)
+└
+
