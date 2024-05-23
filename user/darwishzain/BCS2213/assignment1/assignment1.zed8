@@ -112,8 +112,7 @@ advisor.
   section?: SECTION
 |
   studentlogged? ∈ Studentlogged
-	Registered′ = Registered ⊕ {studentlogged? ↦ (Registered studentlogged? ∪ {(course?, section?)})}
-  Credittotal′ = Credittotal ⊕ {studentlogged? ↦ (Credittotal studentlogged? + Creditcourse course?)}
+	Credittotal' = Credittotal ⊕ {studentlogged? ↦ (Credittotal studentlogged? - Creditcourse course?)}
   	
 └
 
