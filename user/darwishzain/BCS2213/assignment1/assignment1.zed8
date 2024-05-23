@@ -40,11 +40,11 @@ advisor.
   Registered: STUDENT ⇸ (COURSE ↔ SECTION)
   Creditcourse: COURSE ⇸ ℕ
   Credittotal: STUDENT ⇸ ℕ
-  Maxcredit: ℕ
+  Creditmax: ℕ
   Studentlogged : ℙ STUDENT
   Advisorlogged : ℙ ADVISOR
 |
-	Maxcredit = 20
+	Creditmax = 20
 └
 
 ┌ InitSystem
@@ -59,7 +59,7 @@ advisor.
   Credittotal = ∅  
 └
 
-┌ StudentLogin
+┌ Studentlogin
   ΔSystemSchema
   student?: STUDENT
 |
@@ -67,7 +67,7 @@ advisor.
   	Studentlogged′ = Studentlogged ∪ { student? }
 └
 
-┌ StudentLogout
+┌ Studentlogout
   ΔSystemSchema
   student?: STUDENT
 |
@@ -75,7 +75,7 @@ advisor.
   	Studentlogged′ = Studentlogged ∖ { student? }
 └
 
-┌ AdvisorLogin
+┌ Advisorlogin
   ΔSystemSchema
   advisor?: ADVISOR
 |
@@ -83,7 +83,7 @@ advisor.
   	Advisorlogged′ = Advisorlogged ∪ { advisor? }
 └
 
-┌ AdvisorLogout
+┌ Advisorlogout
   ΔSystemSchema
   advisor?: ADVISOR
 |
@@ -93,9 +93,58 @@ advisor.
 
 ┌ CourseRegister
   ΔSystemSchema
-  
+  ΞStudentlogin
+  studentlogged?: STUDENT
+  course? : COURSE
+  section?: SECTION
+|
+  studentlogged? ∈ Studentlogged
+  	course? ∈ COURSE
+  		section? ∈ SECTION
+  			credits(course?) + Credittotal ≤ Creditmax
+  				credits(course?) + Credittotal
+└
+
+┌ Coursewithdraw
+   ΔSystemSchema
+  studentlogged?: STUDENT
+  course? : COURSE
+  section?: SECTION
+|
+  studentlogged? ∈ Studentlogged
+  	
+└
+
+┌ Courseedit
+  ΔSystemSchema
+  studentlogged?: STUDENT
+  course? : COURSE
+  section?: SECTION
+|
+  studentlogged? ∈ Studentlogged
+  	
+└
+
+┌ Advisornotify
+   ΔSystemSchema
+  advisorlogged?: ADVISOR
+  section?: SECTION
+|
+  advisorlogged? ∈ Advisorlogged
+  	
+└
+
+┌Advisorapprove
+   ΔSystemSchema
+  advisorlogged?: ADVISOR
+  section?: SECTION
+|
+	advisorlogged? ∈ Advisorlogged
+└
+
+┌ Display
+  DECLS
 |
   PREDS
 └
-
 
