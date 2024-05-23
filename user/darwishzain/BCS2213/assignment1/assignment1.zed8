@@ -99,30 +99,45 @@ advisor.
   section?: SECTION
 |
   studentlogged? ∈ Studentlogged
-  	course? ∈ COURSE
-  		section? ∈ SECTION
-  			credits(course?) + Credittotal ≤ Creditmax
-  				credits(course?) + Credittotal
+  	course? ∈ Course
+  		section? ∈ (Section course?)
+  			(course?, section?) ∉ (Registered studentlogged?)
+  				(Creditcourse course?) + (Credittotal studentlogged?) ≤ Creditmax
+ 					Registered′ = Registered ⊕ {studentlogged? ↦ (Registered studentlogged? ∪ {(course?, section?)})}
+  					Credittotal′ = Credittotal ⊕ {studentlogged? ↦ (Credittotal studentlogged? + Creditcourse course?)}
 └
 
 ┌ Coursewithdraw
    ΔSystemSchema
+  ΞStudentlogin
   studentlogged?: STUDENT
   course? : COURSE
   section?: SECTION
 |
   studentlogged? ∈ Studentlogged
-	Credittotal' = Credittotal ⊕ {studentlogged? ↦ (Credittotal studentlogged? - Creditcourse course?)}
-  	
+  	course? ∈ Course
+  		section? ∈ (Section course?)
+  			(course?, section?) ∉ (Registered studentlogged?)
+  				(Creditcourse course?) + (Credittotal studentlogged?) ≤ Creditmax
+ 					Registered′ = Registered ∖ {studentlogged? ↦ (course?, section?)
+  					Credittotal' = Credittotal ⊕ {studentlogged? ↦ (Credittotal studentlogged? - Creditcourse course?)}
+  					Credittotal′ = Credittotal ⊕ {studentlogged? ↦ ( Credittotal studentlogged? − Creditcourse course?)}
 └
 
 ┌ Courseedit
   ΔSystemSchema
+  ΞStudentlogin
   studentlogged?: STUDENT
   course? : COURSE
   section?: SECTION
 |
   studentlogged? ∈ Studentlogged
+  	course? ∈ Course
+  		section? ∈ (Section course?)
+  			(course?, section?) ∉ (Registered studentlogged?)
+  				(Creditcourse course?) + (Credittotal studentlogged?) ≤ Creditmax
+ 					Registered′ = Registered ⊕ {studentlogged? ↦ (Registered studentlogged? ∪ {(course?, section?)})}
+  					Credittotal′ = Credittotal ⊕ {studentlogged? ↦ (Credittotal studentlogged? + Creditcourse course?)}
   	
 └
 
