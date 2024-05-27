@@ -16,8 +16,8 @@ P/S: I can't install on my device too
 - `Finish`
 
 ## Navigation
-Pandora Hotel until week 4 [here](lab-w3-w4.zed8)
-Answer for Quiz 1 [here](quiz1-w4.zed8)
+- Pandora Hotel until week 4 [here](lab-w3-w4.zed8)
+- Answer for Quiz 1 [here](quiz1-w4.zed8) CHECK
 ### Basic 
 #### State Variable Schema
 ```
@@ -69,5 +69,7 @@ Answer for Quiz 1 [here](quiz1-w4.zed8)
 - [Formal Methods in Software Engineering](https://ftms.edu.my/v2/wp-content/uploads/2019/02/StudyGuideSD3049.pdf) PDF
 - [Glossary of Z Notation](https://staff.washington.edu/jon/z/glossary.html) WEB
 - [Using Z](https://www.cs.cmu.edu/~15819/zedbook.pdf) PDF
+- [The Z Specification Language](https://formal.kastel.kit.edu/~beckert/teaching/Spezifikation-SS04/11Z.pdf) PDF
 ### Video
 - [Introduction to Z Notation by Quothmar](https://www.youtube.com/watch?v=qfEe9luJmVE) Youtube
+ 
