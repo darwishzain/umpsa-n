@@ -1,8 +1,11 @@
-## Anyone willing to contribute their notes?
-It is made and aimed for UMPSA students
+# Faculty (Add here)
+
+## [FK](./faculty-of-computing)
+
+
 
 ### Request
-Put your request here with contact(if necessary)
+Add your request to [UMPSA-C](https://github.com/darwishzain/umpsa-c) with contact information (if necessary)
 
 
 
