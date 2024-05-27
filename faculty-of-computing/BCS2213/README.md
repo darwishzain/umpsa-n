@@ -65,5 +65,9 @@ Answer for Quiz 1 [here](quiz1-w4.zed8)
 ```
 
 ## Reference
+### Text
 - [Formal Methods in Software Engineering](https://ftms.edu.my/v2/wp-content/uploads/2019/02/StudyGuideSD3049.pdf) PDF
 - [Glossary of Z Notation](https://staff.washington.edu/jon/z/glossary.html) WEB
+- [Using Z](https://www.cs.cmu.edu/~15819/zedbook.pdf) PDF
+### Video
+- [Introduction to Z Notation by Quothmar](https://www.youtube.com/watch?v=qfEe9luJmVE) Youtube
