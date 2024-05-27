@@ -33,65 +33,74 @@ advisor.
 ─ [STUDENT,ADVISOR,COURSE,SECTION,BOOL] └
 
 ┌ SystemSchema
-Student: ℙ STUDENT
-  Advisor:  ℙ ADVISOR
-  Course: ℙ COURSE
-  Section: COURSE ⇸ ℙ SECTION
-  Registered: STUDENT ⇸ (COURSE ↔ SECTION)
-  Creditcourse: COURSE ⇸ ℕ
-  Credittotal: STUDENT ⇸ ℕ
-  Creditmax: ℕ
-  Studentlogged : ℙ STUDENT
-  Advisorlogged : ℙ ADVISOR
-  Advisory: STUDENT ⇸ ADVISOR
-  Approved: STUDENT ⇸ (COURSE ⇸ BOOL)
+	Student: ℙ STUDENT
+	Studentcourse: STUDENT ⇸ ℙ COURSE
+	Studentsection: STUDENT ⇸ ℙ SECTION
+	Courseapproved: STUDENT ⇸ ℙ COURSE ⇸ BOOL
+	Studentadvisor: STUDENT ⇸ ℙ ADVISOR
+	Studentcredit: STUDENT ⇸ ℕ
+  	Advisor:  ℙ ADVISOR
+  	Course: ℙ COURSE
+  	Section: COURSE ⇸ ℙ SECTION
+  	Credit: COURSE ⇸ ℕ
+  	Maxcredit: ℕ
+ 	 Studentlogged : ℙ STUDENT
+  	Advisorlogged : ℙ ADVISOR
 |
-	Creditmax = 20
+	Maxcredit = 20
 └
 
 ┌ InitSystem
- 	ΞSystemSchema 	
+ 	ΔSystemSchema 	
 |
-  Student = ∅
-  Advisor = ∅
-  Course = ∅
-  Section = ∅
-  Registered = ∅
-  Creditcourse = ∅
-  Credittotal = ∅ 
-   Approved = ∅
+  	Student = ∅
+  	Studentcourse = ∅
+  	Studentsection = ∅
+	Courseapproved = ∅
+	Studentadvisor = ∅
+	Studentcredit = ∅
+	Studentcourse = ∅
+  	Advisor = ∅
+  	Course = ∅
+  	Section = ∅
+  	Credit = ∅
+  	Studentlogged = ∅
+  	Advisorlogged = ∅
 └
 
 ┌ Studentlogin
   ΔSystemSchema
   student?: STUDENT
+  Studentlogged′: ℙ STUDENT
 |
-  student? ∉ Studentlogged
-  	Studentlogged′ = Studentlogged ∪ { student? }
+	student? ∈ Student
+		Studentlogged = ∅
+			Studentlogged′ = Studentlogged ∪ {student?}
 └
-
+┌ Advisorlogin
+  ΔSystemSchema
+  advisor?: ADVISOR
+  Advisorlogged′: ℙ ADVISOR
+|
+	advisor? ∈ Advisor
+		Advisorlogged = ∅
+			Advisorlogged′ = Advisorlogged ∪ {advisor?}
+└
 ┌ Studentlogout
   ΔSystemSchema
   student?: STUDENT
 |
-  student? ∈ Studentlogged
-  	Studentlogged′ = Studentlogged ∖ { student? }
+	student? ∈ Student
+		Studentlogged ≠ ∅
+			Studentlogged = ∅
 └
-
-┌ Advisorlogin
-  ΔSystemSchema
-  advisor?: ADVISOR
-|
-  advisor? ∉ Advisorlogged
-  	Advisorlogged′ = Advisorlogged ∪ { advisor? }
-└
-
 ┌ Advisorlogout
   ΔSystemSchema
   advisor?: ADVISOR
 |
-  advisor? ∈ Advisorlogged
-  	Advisorlogged′ = Advisorlogged ∖ { advisor? }
+	advisor? ∈ Advisor
+		Advisorlogged ≠ ∅
+			Advisorlogged = ∅
 └
 
 ┌ CourseRegister
@@ -99,15 +108,22 @@ Student: ℙ STUDENT
   ΞStudentlogin
   studentlogged?: STUDENT
   course? : COURSE
-  section?: SECTION
+  section?: COURSE ⇸ ℙ SECTION
+  Studentcourse′: STUDENT ⇸ ℙ COURSE
+  Studentsection′: STUDENT ⇸ ℙ SECTION
+  Courseapproved′ : STUDENT ⇸ ℙ COURSE ⇸ BOOL
 |
 	studentlogged? ∈ Studentlogged
-		studentlogged? ∈ dom(Registered)
-  			course? ∈ Course
-  				section? ∈ (Section course?)
-  					(course?, section?) ∈ (Registered studentlogged?)
-  						Registered' = Registered ⊖ {studentlogged? ↦ {(course?, Section)}}
-  						Registered' = Registered' ⊕ {studentlogged? ↦ (Registered studentlogged? ∪ {(course?, section?)})}
+		course? ∈ Course
+			section? ∈ ℙ Section
+				Credit(course?) + Studentcredit( studentlogged?) ≤ Maxcredit	
+					Studentcredit′(studentlogged?) = Studentcredit(studentlogged?) + Credit(course?)
+				Registered′ = Registered ⊕ {studentlogged? ⇸ (course? ↔  section?)}
+				
+  						(Creditcourse course?) + (Credittotal studentlogged?) ≤ Creditmax
+  							Registered′ = Registered ⊕ { studentlogged? ↦ ({course? ↔ section?} ∪ (Registered(studentlogged?)))}
+  							Registered′ = Registered ⊕ {studentlogged? ↦ {(course?, Section)}}
+  							Registered′ = Registered' ⊕ {studentlogged? ↦ (Registered studentlogged? ∪ {(course?, section?)})}
 └
 
 ┌ Coursewithdraw
@@ -115,14 +131,11 @@ Student: ℙ STUDENT
   ΞStudentlogin
   studentlogged?: STUDENT
   course? : COURSE
-  section?: SECTION
+  section?: COURSE ⇸ ℙ SECTION
 |
   studentlogged? ∈ Studentlogged
-  	course? ∈ Course
-  		section? ∈ (Section course?)
-  			(course?, section?) ∈ (Registered studentlogged?)
-  				Registered' = Registered ⊖ {studentlogged? ↦ {(course?, section?)}}
-  				
+		course? ∈ Course
+			section? ∈ ℙ Section
  └
  
 ┌ Courseedit
@@ -170,25 +183,30 @@ Student: ℙ STUDENT
    	ΞSystemSchema
   	ΞStudentlogin
   	studentlogged?: STUDENT
-  	course! : COURSE
-  	section!: COURSE ⇸ ℙ SECTION
-  	approved!: STUDENT ⇸ (COURSE ⇸ BOOL)
+  	studentcourse! : STUDENT ⇸ ℙ COURSE
+	studentsection! : STUDENT ⇸ ℙ SECTION
+	courseapproved! : STUDENT ⇸ ℙ COURSE ⇸ BOOL
+	studentadvisor! : STUDENT ⇸ ℙ ADVISOR
+	studentcredit! : STUDENT ⇸ ℕ
 |
   studentlogged? ∈ Studentlogged
-  	course! = studentlogged? ⇸ Course
-  	section! = studentlogged? ⇸ (Course Section)
-  	approved! = Studentlogged ⇸ (Course Approved)
+	studentcourse!(studentlogged?) = Studentcourse(studentlogged?)
+	studentsection!(studentlogged?) = Studentsection(studentlogged?)
+	courseapproved!(studentlogged?) = Courseapproved(Studentcourse(studentlogged?))
+	studentadvisor!(studentlogged?) = Studentadvisor(studentlogged?)
+	studentcredit!(studentlogged?) = Studentcredit(studentlogged?)
 └
 
 ┌ Advisordisplay
    	ΞSystemSchema
   	ΞAdvisorlogin
   	advisorlogged?:ADVISOR
-  	advisory!:STUDENT ⇸ ADVISOR
-  	studentinfo!: STUDENT ⇸ COURSE × SECTION × BOOL
+  	
 |
   advisorlogged? ∈ Advisorlogged
+  	Student(Studentadvisor) = advisorlogged?
+  	{student | (student, advisor) ∈ Studentadvisor ∧ Advisor = advisorlogged?}
+  	
   	studentinfo! = STUDENT → COURSE × SECTION × BOOL
   	
 └
-
