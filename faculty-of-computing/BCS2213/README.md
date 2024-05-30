@@ -70,6 +70,7 @@ P/S: I can't install on my device too
 - [Glossary of Z Notation](https://staff.washington.edu/jon/z/glossary.html) WEB
 - [Using Z](https://www.cs.cmu.edu/~15819/zedbook.pdf) PDF
 - [The Z Specification Language](https://formal.kastel.kit.edu/~beckert/teaching/Spezifikation-SS04/11Z.pdf) PDF
+- [The Z Notation: A Reference Manual](https://www.cs.umd.edu/~mvz/handouts/z-manual.pdf) PDF
 ### Video
 - [Introduction to Z Notation by Quothmar](https://www.youtube.com/watch?v=qfEe9luJmVE) Youtube
  
