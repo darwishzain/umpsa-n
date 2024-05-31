@@ -110,14 +110,14 @@ advisor.
   ΞStudentlogin
   studentlogged?: STUDENT
   course? : COURSE
-  section?: COURSE ⇸ ℙ SECTION
+  section?: ℙ SECTION
 |
 	studentlogged? ∈ Studentlogged
 		course? ∈ Course
 			section? ∈ ℙ Section
 				Credit(course?) + Studentcredit( studentlogged?) ≤ Maxcredit	
 					Studentcourse′ = Studentcourse ⊕ {studentlogged? ↦ { course? }}
-					Studentsection′ = Studentsection ⊕  { studentlogged? ↦ { Course ↦ Section(course?) } }
+					Studentsection′ = Studentsection ⊕  { studentlogged? ↦ { course? ↦ section? } }
 					Studentcredit′(studentlogged?) = Studentcredit(studentlogged?) + Credit(course?)
 └
 courseregister add new course
@@ -126,13 +126,13 @@ courseregister add new course
   ΞStudentlogin
   studentlogged?: STUDENT
   course? : COURSE
-  section?: COURSE ⇸ ℙ SECTION
+  section?: ℙ SECTION
 |
   studentlogged? ∈ Studentlogged
 		course? ∈ Course
 			section? ∈ ℙ Section
 				Studentcourse′ = Studentcourse ⊖ {studentlogged? ↦ { course? }}
-				Studentsection′ = Studentsection ⊖ { studentlogged? ↦ { Course ↦ Section(course?) } }
+				Studentsection′ = Studentsection ⊖ { studentlogged? ↦ { course ↦ section? } }
 				Studentcredit′(studentlogged?) = Studentcredit(studentlogged?) − Credit(course?)
  └
  
@@ -146,8 +146,8 @@ courseregister add new course
   studentlogged? ∈ Studentlogged
   	course? ∈ Course
   		section? ∈ ℙ Section
-  			Studentsection′ = Studentsection ⊖ { studentlogged? ↦ { Course ↦ Section(course?) } }
-  			Studentsection′ = Studentsection ⊕  { studentlogged? ↦ { Course ↦ Section(course?) } }
+  			Studentsection′ = Studentsection ⊖ { studentlogged? ↦ { course? ↦ section? } }
+  			Studentsection′ = Studentsection ⊕  { studentlogged? ↦ { course? ↦ section? } }
   			
 └
 
