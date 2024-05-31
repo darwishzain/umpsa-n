@@ -141,7 +141,7 @@ courseregister add new course
   ΞStudentlogin
   studentlogged?: STUDENT
   course? : COURSE
-  section?: COURSE ⇸ ℙ SECTION
+  section?: ℙ SECTION
 |
   studentlogged? ∈ Studentlogged
   	course? ∈ Course
