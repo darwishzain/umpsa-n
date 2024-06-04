@@ -1,7 +1,6 @@
 ## This is Formal Methods
 
-## Starting with [Community Z Tools](https://czt.sourceforge.net/)
-P/S: I can't install on my device too
+## [Community Z Tools Installation](https://czt.sourceforge.net/)
 
 ### New Project
 - Open `CZT.exe`
