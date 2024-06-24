@@ -1,0 +1,32 @@
+﻿─ section project1 parents standard_toolkit
+└
+
+─ [BOOL,FLOOR] └
+
+╷
+	True,False : BOOL
+	Level1,Level2,Level3,Level4,Level5 : FLOOR
+└
+
+┌ Elevatorsystem
+  Statusdoor : BOOL
+  Statusidle : BOOL
+  Statusmoving : BOOL
+  Level : FLOOR ⇸ ℕ
+  Currentlevel : FLOOR ⇸ ℕ
+  Loadmax : ℕ
+|
+  Level = {Level1 ↦1,Level2 ↦2,Level3 ↦3,Level4 ↦4,Level5 ↦5}
+  Loadmax = 500
+└
+
+┌ Initelevator
+  ΔElevatorsystem
+  currentfloor? : FLOOR
+  currentlevel? : ℕ
+|
+  Statusdoor = False
+  Statusidle = True
+  Statusmoving = False
+  Currentlevel = currentfloor? ⇸ currentlevel?
+└
