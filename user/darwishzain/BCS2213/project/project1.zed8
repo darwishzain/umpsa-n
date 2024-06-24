@@ -6,13 +6,7 @@
 	True,False : BOOL
 	Level1,Level2,Level3,Level4,Level5 : FLOOR
 └
-states: Idle MovingUp MovingDown
-receive commands to go to specific floors, then should move efficiently and safely
 
--control system: record current floor
--passenger: select floor
--control system: check go up/down
--control system: go up/down 
 ┌ Elevatorsystem
   Statusdoor : BOOL
   Statusidle : BOOL
@@ -23,6 +17,7 @@ receive commands to go to specific floors, then should move efficiently and safe
   Load : ℕ
   Loadmax : ℕ
   Operational : BOOL
+  Issue : BOOL
 |
   Level = {Level1 ↦1,Level2 ↦2,Level3 ↦3,Level4 ↦4,Level5 ↦5}
   Loadmax = 500
@@ -40,21 +35,20 @@ Moving : +=movingup -=movingdown 0=notmoving
   Currentfloor = Level1
   Load = 0
   Operational = True
+  Issue = False
 └
 
 ┌ Start
   ΔElevatorsystem
   tofloor? : FLOOR
-  currentfloor? : FLOOR
   load? : ℕ
 |
-	Operational′ = True
 	Statusidle′ = False
-	Moving′ = Moving + (Level(Currentfloor) − Level(currentfloor?))
+	Moving′ = Moving + (Level(Currentfloor) − Level(tofloor?))
+	Moving′ = 0
 	Statusidle′ = True
 	Statusdoor′ = True
-	Currentfloor′ = currentfloor?
-	Operational′ = False
+	Currentfloor′ = tofloor?
 └
 
 ┌ Move
@@ -68,13 +62,16 @@ Moving : +=movingup -=movingdown 0=notmoving
 			Moving′ = Moving + (Level(Currentfloor) − Level(tofloor?))
 			Moving′ = 0
 			Statusidle′ = True
+			Statusdoor′ = True
 			Currentfloor = tofloor?
 └
 
 ┌ Operation
   ΔElevatorsystem
-  ΞMove
+  issue? : BOOL
+  currentfloor? : FLOOR
 |
-  	Operational′ = True
-  	
+  issue? = True
+  	Operational′ = False
+  	Currentfloor′ = currentfloor?
 └
