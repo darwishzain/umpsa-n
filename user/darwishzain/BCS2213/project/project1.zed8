@@ -1,32 +1,80 @@
 ﻿─ section project1 parents standard_toolkit
 └
-
 ─ [BOOL,FLOOR] └
 
 ╷
 	True,False : BOOL
 	Level1,Level2,Level3,Level4,Level5 : FLOOR
 └
+states: Idle MovingUp MovingDown
+receive commands to go to specific floors, then should move efficiently and safely
 
+-control system: record current floor
+-passenger: select floor
+-control system: check go up/down
+-control system: go up/down 
 ┌ Elevatorsystem
   Statusdoor : BOOL
   Statusidle : BOOL
-  Statusmoving : BOOL
+  Moving : ℤ
+  Floor : FLOOR
   Level : FLOOR ⇸ ℕ
-  Currentlevel : FLOOR ⇸ ℕ
+  Currentfloor : FLOOR
+  Load : ℕ
   Loadmax : ℕ
+  Operational : BOOL
 |
   Level = {Level1 ↦1,Level2 ↦2,Level3 ↦3,Level4 ↦4,Level5 ↦5}
   Loadmax = 500
 └
+Statusdoor : true=open false=close
+Statusidle : true=idle false=moving
+Moving : +=movingup -=movingdown 0=notmoving
 
 ┌ Initelevator
   ΔElevatorsystem
-  currentfloor? : FLOOR
-  currentlevel? : ℕ
 |
   Statusdoor = False
   Statusidle = True
-  Statusmoving = False
-  Currentlevel = currentfloor? ⇸ currentlevel?
+  Moving = 0
+  Currentfloor = Level1
+  Load = 0
+  Operational = True
+└
+
+┌ Start
+  ΔElevatorsystem
+  tofloor? : FLOOR
+  currentfloor? : FLOOR
+  load? : ℕ
+|
+	Operational′ = True
+	Statusidle′ = False
+	Moving′ = Moving + (Level(Currentfloor) − Level(currentfloor?))
+	Statusidle′ = True
+	Statusdoor′ = True
+	Currentfloor′ = currentfloor?
+	Operational′ = False
+└
+
+┌ Move
+  ΔElevatorsystem
+  tofloor? : FLOOR
+  load? : ℕ
+|
+	Operational = True
+  		Statusdoor′ = False
+  		(Loadmax − load?) > 0
+			Moving′ = Moving + (Level(Currentfloor) − Level(tofloor?))
+			Moving′ = 0
+			Statusidle′ = True
+			Currentfloor = tofloor?
+└
+
+┌ Operation
+  ΔElevatorsystem
+  ΞMove
+|
+  	Operational′ = True
+  	
 └
