@@ -1,0 +1,17 @@
+/laravel-app/node_modules
+/laravel-app/public/hot
+/laravel-app/public/storage
+/laravel-app/storage/*.key
+/laravel-app/vendor
+/laravel-app/.env
+/laravel-app/.env.backup
+/laravel-app/.env.production
+/laravel-app/bootstrap/cache/*
+/laravel-app/storage/app/*
+/laravel-app/storage/framework/cache/*
+/laravel-app/storage/framework/sessions/*
+/laravel-app/storage/framework/views/*
+/laravel-app/storage/logs/*
+/laravel-app/tests/Variable/
+/laravel-app/.phpunit.result.cache
+/laravel-app/public/build
