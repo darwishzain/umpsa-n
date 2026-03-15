@@ -11,3 +11,6 @@ Route::get('/about',function(){
 Route::get('/faculty',function(){
     return view('faculty');
 });
+Route::get('/contributors',function(){
+    return view('contributors');
+});
